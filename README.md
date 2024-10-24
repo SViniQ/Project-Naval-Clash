@@ -20,14 +20,14 @@ O jogo foi contruindo com as seguintes ferramentas, bibliotecas e Compiladores d
 
 A seguir todos que contribuiram para esse projeto:
 
-* **Vinícius Silva Queiroz** - *Programador* - [viníciussilvaqueiroz](https://github.com/SViniQ)
-* **Guilherme Wolf Nogueira** - *Programador* - [guilhermewolfnogueira](https://github.com/linkParaPerfil)
-* **Arthur Felipe Campos** - *Programador* - [arthurfelipecampos](https://github.com/linkParaPerfil)
+* **Vinícius Silva Queiroz** - *Programador* - [ViníciusSilvaQueiroz](https://github.com/SViniQ)
+* **Guilherme Wolf Nogueira** - *Programador* - [GuilhermeWolfNogueira](https://github.com/linkParaPerfil)
+* **Arthur Felipe Campos** - *Programador* - [ArthurFelipeCarvalho](https://github.com/linkParaPerfil)
 
 ## ✒️ Disciplina e Instituição Afiliados
 
 * **Centro de Estudos e Sistemas Avançados do Recife (CESAR School)** - *Instituição de Ensino Afiliado* - [CESAR School](https://www.cesar.school)
-* **Programação Imperativa e Funcional (PIF) ministrada por Diego de Freitas Bezerra** - *Disciplina* - [PIF](https://github.com/ddefb)
+* **Programação Imperativa e Funcional (PIF) ministrada por Diego de Freitas Bezerra** - *Disciplina e Mentor* - [DiegodeFreitasBezerra](https://github.com/ddefb)
 
 ## 📄 Licença
 
