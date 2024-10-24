@@ -26,8 +26,8 @@ A seguir todos que contribuiram para esse projeto:
 
 ## ✒️ Disciplina e Instituição Afiliados
 
-* **Centro de Estudos e Sistemas Avançados do Recife (CESAR School)** - *Instituição de Ensino Afiliado* - [cesarschool](https://www.cesar.school)
-* **Programação Imperativa e Funcional (PIF) ministrada por Diego de Freitas Bezerra** - *Disciplina* - [pif](https://github.com/ddefb)
+* **Centro de Estudos e Sistemas Avançados do Recife (CESAR School)** - *Instituição de Ensino Afiliado* - [CESAR School](https://www.cesar.school)
+* **Programação Imperativa e Funcional (PIF) ministrada por Diego de Freitas Bezerra** - *Disciplina* - [PIF](https://github.com/ddefb)
 
 ## 📄 Licença
 
