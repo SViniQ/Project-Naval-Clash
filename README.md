@@ -22,7 +22,7 @@ A seguir todos que contribuiram para esse projeto:
 
 * **Vinícius Silva Queiroz** - *Programador* - [ViníciusSilvaQueiroz](https://github.com/SViniQ)
 * **Guilherme Wolf Nogueira** - *Programador* - [GuilhermeWolfNogueira](https://github.com/linkParaPerfil)
-* **Arthur Felipe Campos** - *Programador* - [ArthurFelipeCampos](https://github.com/linkParaPerfil)
+* **Arthur Felipe Campos** - *Programador* - [ArthurFelipeCampos](https://github.com/Arthur5502)
 
 ## ✒️ Disciplina e Instituição Afiliados
 
