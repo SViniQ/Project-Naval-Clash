@@ -21,7 +21,7 @@ O jogo foi contruindo com as seguintes ferramentas, bibliotecas e Compiladores d
 A seguir todos que contribuiram para esse projeto:
 
 * **Vinícius Silva Queiroz** - *Programador* - [ViníciusSilvaQueiroz](https://github.com/SViniQ)
-* **Guilherme Wolf Nogueira** - *Programador* - [GuilhermeWolfNogueira](https://github.com/linkParaPerfil)
+* **Guilherme Wolf Nogueira** - *Programador* - [GuilhermeWolfNogueira](https://github.com/GuilhermeWolf04)
 * **Arthur Felipe Campos** - *Programador* - [ArthurFelipeCampos](https://github.com/Arthur5502)
 
 ## ✒️ Disciplina e Instituição Afiliados
