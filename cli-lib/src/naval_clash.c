@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include "screen.h"  // Incluímos o screen.h para usar as funções de interface
+#include "screen.h"  
+#include "keyboard.h"
+#include "timer.h"
 
-// Cabeçalhos de funções
 void menuInicial();
-void limpaTela();
 void iniciaTabuleiro(char tabuleiro[10][10], char mascara[10][10]);
 void exibeMapa();
 void exibeTabuleiro(char tabuleiro[10][10], char mascara[10][10], int mostraGabarito);
@@ -21,24 +21,20 @@ void limpaTela() {
 void iniciaTabuleiro(char tabuleiro[10][10], char mascara[10][10]) {
     for (int linha = 0; linha < 10; linha++) {
         for (int coluna = 0; coluna < 10; coluna++) {
-            tabuleiro[linha][coluna] = 'A';   // Representa água
-            mascara[linha][coluna] = '*';     // Máscara oculta
+            tabuleiro[linha][coluna] = 'A';
+            mascara[linha][coluna] = '*';
         }
     }
 }
 
 void exibeMapa() {
-    
-    // Desenhamos bordas em torno do mapa usando screenDrawBorders
-    screenDrawBorders();
-    
-    // Cabeçalho do mapa
-    screenGotoxy(5, 2);
+
+    screenGotoxy(3, 2);
     printf("     ");
     for (int cont = 0; cont < 10; cont++) {
-        printf("%d ", cont);  // Cabeçalho das colunas (0-9)
+        printf("%d ", cont);
     }
-    screenGotoxy(5, 3);
+    screenGotoxy(3, 3);
     printf("     ");
     for (int cont = 0; cont < 10; cont++) {
         printf("| ");  // Delimitador visual para as colunas
@@ -48,8 +44,8 @@ void exibeMapa() {
 
 void exibeTabuleiro(char tabuleiro[10][10], char mascara[10][10], int mostraGabarito) {
     for (int linha = 0; linha < 10; linha++) {
-        screenGotoxy(5, linha + 5);  // Posiciona a impressão das linhas a partir de (5, 5)
-        printf("%d - ", linha);      // Exibe o número da linha
+        screenGotoxy(3, linha + 5);
+        printf("%d - ", linha);
 
         for (int coluna = 0; coluna < 10; coluna++) {
             if (mascara[linha][coluna] == 'A')
@@ -59,22 +55,10 @@ void exibeTabuleiro(char tabuleiro[10][10], char mascara[10][10], int mostraGaba
             else
                 screenSetColor(WHITE, BLACK);  // Outros elementos
 
-            printf(" %c", mascara[linha][coluna]);  // Exibe o conteúdo da máscara
-            screenSetColor(WHITE, BLACK);          // Restaura a cor padrão
+            printf(" %c", mascara[linha][coluna]);
+            screenSetColor(WHITE, BLACK);
         }
         printf("\n");
-    }
-
-    if (mostraGabarito) {
-        screenGotoxy(5, 17);  // Posiciona o gabarito na parte inferior da tela
-        printf("Gabarito:\n");
-        for (int linha = 0; linha < 10; linha++) {
-            screenGotoxy(5, linha + 18);
-            for (int coluna = 0; coluna < 10; coluna++) {
-                printf(" %c", tabuleiro[linha][coluna]);
-            }
-            printf("\n");
-        }
     }
 }
 
@@ -84,7 +68,7 @@ void posicionaBarcos(char tabuleiro[10][10]) {
         int linha = rand() % 10;
         int coluna = rand() % 10;
         if (tabuleiro[linha][coluna] == 'A') {
-            tabuleiro[linha][coluna] = 'P';  // Define a posição do barco
+            tabuleiro[linha][coluna] = 'P';
             barcosPosicionados++;
         }
     }
@@ -99,156 +83,150 @@ void verificaTiro(char tabuleiro[10][10], int linha, int coluna, int *pontos, ch
     }
 }
 
-void informacoesjogo(){
-    int opcao;
-    while (!opcao == 0) {
-        
-        screenGotoxy(5, 3);
-        printf("====|Informações do jogo|====");
-        screenGotoxy(5, 5);
-        printf("O jogo de batalha naval é um jogo de tabuleiro, no qual os");
-        screenGotoxy(5, 6);
-        printf("jogador tem de adivinhar em quais quadrados estão os navi-");
-        screenGotoxy(5, 7);
-        printf("os do oponente. O objetivo do jogo é afundar todos os nav-");
-        screenGotoxy(5, 8);
-        printf("ios do oponente. O jogo é em um tabuleiro de 10x10, onde");
-        screenGotoxy(5, 9);
-        printf("seu objetivo é afundar os barcos.");
-        screenGotoxy(5, 11);
-        printf("====|Regras de Tiro|====");
-        screenGotoxy(5, 13);
-        printf("- Você tem 10 tiros para acertar os navios.");
-        screenGotoxy(5, 15);
-        printf("====|Pontuação|====");
-        screenGotoxy(5, 17);
-        printf("- Cada acerto vale 10 pontos.");
-        screenGotoxy(5, 18);
-        printf("- Cada erro vale 0 pontos.");
-        screenGotoxy(5, 20);
-        printf("Boa Caçada!");
-        screenGotoxy(5, 22);
-        printf("Pressione 0 para voltar ao menu inicial: ");
-        scanf("%d", &opcao);
-    }
-    menuInicial();
-}
-
 void jogo(char nomeJogador[50]) {
     char tabuleiro[10][10], mascara[10][10];
-    int pontos = 0, tentativas = 0, maximoTentativas = 1;
+    int pontos = 0; 
+    int tentativas = 0, maximoTentativas = 2;
     char mensagem[100] = "Bem-vindo ao jogo!";
-
+    
+    screenClear();
     iniciaTabuleiro(tabuleiro, mascara);
     posicionaBarcos(tabuleiro);
 
+    screenDrawBorders();
+
+    exibeMapa();
     while (tentativas < maximoTentativas) {
-        limpaTela();
-        exibeMapa();
         exibeTabuleiro(tabuleiro, mascara, 0);
 
-        // Exibe pontuação e tentativas restantes
-        screenGotoxy(5, 16);
+        screenGotoxy(3, 16);
         printf("Pontos: %d, Tentativas Restantes: %d", pontos, maximoTentativas - tentativas);
-        screenGotoxy(5, 17);
+        screenGotoxy(3, 17);
         printf("%s\n", mensagem);
 
-        // Solicita a jogada
-        int linhaJogada, colunaJogada;
-        screenGotoxy(5, 19);
-        printf("%s, digite uma linha: ", nomeJogador);
-        scanf("%d", &linhaJogada);
-        screenGotoxy(5, 20);
-        printf("%s, digite uma coluna: ", nomeJogador);
-        scanf("%d", &colunaJogada);
+        int linhaJogada = -1, colunaJogada = -1;
 
-        // Verifica a jogada
+        screenGotoxy(3, 19);
+        printf("%s, digite uma linha (0-9): ", nomeJogador);
+        scanf("%d", &linhaJogada);
+        while (getchar() != '\n');
+
+        screenGotoxy(3, 20);
+        printf("%s, digite uma coluna (0-9): ", nomeJogador);
+        scanf("%d", &colunaJogada);
+        while (getchar() != '\n');  
+
         if (linhaJogada >= 0 && linhaJogada < 10 && colunaJogada >= 0 && colunaJogada < 10) {
             verificaTiro(tabuleiro, linhaJogada, colunaJogada, &pontos, mensagem);
             mascara[linhaJogada][colunaJogada] = tabuleiro[linhaJogada][colunaJogada];
             tentativas++;
         } else {
-            printf("Posição inválida. Tente novamente.\n");
+            strcpy(mensagem, "Posição inválida. Tente novamente.");
         }
     }
 
-    // Finaliza o jogo e exibe opções de menu
-    screenGotoxy(5, 22);
-    printf("Fim de jogo!");
-    screenGotoxy(5, 23);
-    printf("Pontuação final: %d", pontos);
-    screenGotoxy(5, 25);
+    screenGotoxy(3, 22);
+    printf("Fim de jogo! Pontuação final: %d", pontos);
+    screenGotoxy(3, 23);
     printf("1-Jogar Novamente");
-    screenGotoxy(5, 26);
+    screenGotoxy(3, 24);
     printf("2-Ir para o Menu");
-    screenGotoxy(5, 27);
+    screenGotoxy(3, 25);
     printf("3-Sair");
-    screenGotoxy(5, 29);
-    printf("Escolha uma opção e pressione ENTER: ");
-    
-    int opcao;
-    scanf("%d", &opcao);
+    keyboardInit();
+    char opcao = getchar();
+    keyboardDestroy();
+
     switch(opcao) {
-        case 1:
-            limpaTela();
-            screenDrawBorders();
-            screenGotoxy(5, 3);
+        case '1':
             jogo(nomeJogador);
             break;
-        case 2:
+        case '2':
             menuInicial();
             break;
-        case 3:
+        case '3':
             printf("Até mais!\n");
             break;
+        default:
+            printf("Opção inválida. Saindo...\n");
     }
 }
+
+
 
 void menuInicial() {
-    int opcao = 0;
-    char nomeJogador[50];
+    screenClear();
+    screenDrawBorders();
+    screenGotoxy(3, 3);
+    printf("Bem-vindo ao Jogo de Batalha Naval!");
+    screenGotoxy(3, 5);
+    printf("1 - Jogar");
+    screenGotoxy(3, 6);
+    printf("2 - Sobre");
+    screenGotoxy(3, 7);
+    printf("3 - Sair");
 
-    while (opcao < 1 || opcao > 3) {
-        limpaTela();
-        screenDrawBorders();
-        screenGotoxy(4, 3); // Posiciona o cursor na coluna 5 e linha 3
-        printf("Bem-vindo ao Jogo de Batalha Naval!");
-        screenGotoxy(4, 5); // Posiciona o cursor na coluna 5 e linha 5
-        printf("1 - Jogar");
-        screenGotoxy(4, 6); // Posiciona o cursor na coluna 5 e linha 6
-        printf("2 - Sobre");
-        screenGotoxy(4, 7); // Posiciona o cursor na coluna 5 e linha 7
-        printf("3 - Sair");
-        screenGotoxy(4, 9); // Posiciona o cursor na coluna 5 e linha 9
-        printf("Escolha uma opção e pressione ENTER: ");
-        scanf("%d", &opcao);
+    keyboardInit(); 
+    char initialSettings = getchar();
+    keyboardDestroy(); 
 
-        switch(opcao) {
-            case 1:
-                limpaTela();
-                screenDrawBorders();
-                screenGotoxy(5, 3);
-                printf("Qual seu nome? ");
-                scanf("%s", nomeJogador);
-                jogo(nomeJogador);
-                break;
-            case 2:
-                limpaTela();
-                screenDrawBorders();
-                screenGotoxy(5, 3);
-                informacoesjogo();
-                break;
-            case 3:
-                printf("Até mais!\n");
-                break;
-        }
+    switch(initialSettings) {
+        case '1':
+            char nomeJogador[50];
+            screenGotoxy(3, 9);
+            printf("Qual seu nome? ");
+            scanf("%49s", nomeJogador);
+            while (getchar() != '\n');  
+            screenClear();
+            screenDestroy(); 
+            jogo(nomeJogador);
+            break;
+        case '2':
+            screenClear();
+            screenDrawBorders();
+            screenGotoxy(3, 3);
+            printf("===========================|Informações do jogo|===========================");
+            screenGotoxy(3, 5);
+            printf("O jogo de batalha naval é um jogo de tabuleiro, no qual os jogador tem de");
+            screenGotoxy(3, 6);
+            printf("adivinhar em quais quadrados estão os navios do oponente. O objetivo do ");
+            screenGotoxy(3, 7);
+            printf("jogo é afundar todos os navios do oponente. O jogo é em um tabuleiro de ");
+            screenGotoxy(3, 8);
+            printf("10x10, onde seu objetivo é afundar os barcos.");
+            screenGotoxy(3, 10);
+            printf("=============================|Regras de Tiro|==============================");
+            screenGotoxy(3, 12);
+            printf("- Você tem 10 tiros para acertar os navios.");
+            screenGotoxy(3, 14);
+            printf("===============================|Pontuação|=================================");
+            screenGotoxy(3, 16);
+            printf("- Cada acerto vale 10 pontos.");
+            screenGotoxy(3, 17);
+            printf("- Cada erro vale 0 pontos.");
+            screenGotoxy(3, 19);
+            printf("Boa Caçada!");
+            screenGotoxy(3, 21);
+            printf("Pressione 0 para voltar ao menu inicial: ");
+            initialSettings = getchar(); 
+                while (getchar() != '\n');
+            menuInicial();
+            break;
+        case '3':
+            printf("Até mais!\n");
+            break;
+        default:
+            printf("Opção inválida. Saindo...\n");
     }
 }
 
+
 int main() {
+    atexit(keyboardDestroy);
     srand((unsigned)time(NULL));
-    screenInit(1);  // Inicializa a tela com bordas
-    menuInicial();
-    screenDestroy();  // Restaura o estado do terminal ao finalizar o programa
+    screenInit(0);
+    menuInicial(); 
+    screenDestroy();  
     return 0;
 }
+
