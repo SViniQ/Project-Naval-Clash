@@ -16,6 +16,15 @@ O jogo foi contruindo com as seguintes ferramentas, bibliotecas e Compiladores d
 * [Biblioteca CLI-lib](https://github.com/tgfb/cli-lib) - A biblioteca de interface de linha de comando (CLI) usada no projeto
 * [Code::Blocks](https://www.codeblocks.org) - Compilador de Código feito para programar em C e C++
 
+
+### 🔧 Como compilar:
+
+Para compilar o código siga as etapas abaixo:
+
+* 1 - Abra o terminal na pasta root
+* 2 - Digite "make"
+* 3 - Para deletar todos os .o (build) files, digite: "make clean"
+
 ## ✒️ Autores
 
 A seguir todos que contribuiram para esse projeto:
