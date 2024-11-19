@@ -1,8 +1,8 @@
 #include "board.h"
-#include "screen.h"  // Para usar funções de screen.c
+#include "screen.h"
 #include <stdio.h>
-#include <stdlib.h>  // Para rand()
-#include <string.h>  // Para strcpy()
+#include <stdlib.h>
+#include <string.h>
 
 void iniciaTabuleiro(char tabuleiro[10][10], char mascara[10][10]) {
     for (int linha = 0; linha < 10; linha++) {
