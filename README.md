@@ -21,9 +21,9 @@ O jogo foi contruindo com as seguintes ferramentas, bibliotecas e Compiladores d
 
 Para compilar o código siga as etapas abaixo:
 
-1 - Abra o terminal na pasta root
-2 - Digite "make"
-3 - Para deletar todos os .o (build) files, digite: "make clean"
+* 1 - Abra o terminal na pasta root
+* 2 - Digite "make"
+* 3 - Para deletar todos os .o (build) files, digite: "make clean"
 
 ## ✒️ Autores
 
