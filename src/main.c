@@ -9,11 +9,9 @@
 #include "map.h"
 #include "game.h"
 
-
 void limpaTela() {
-    screenClear();  // Limpa a tela usando a função do screen.c
+    screenClear();
 }
-
 
 int main() {
     atexit(keyboardDestroy);
@@ -23,4 +21,3 @@ int main() {
     screenDestroy();  
     return 0;
 }
-
