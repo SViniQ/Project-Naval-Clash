@@ -8,10 +8,7 @@
 #include "board.h"
 #include "map.h"
 #include "game.h"
-
-void limpaTela() {
-    screenClear();
-}
+#include "clearscreen.h"
 
 int main() {
     atexit(keyboardDestroy);

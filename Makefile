@@ -1,5 +1,5 @@
 # Nome do executável
-TARGET = programa
+TARGET = Naval_Clash
 
 # Diretórios
 SRC_DIR = src

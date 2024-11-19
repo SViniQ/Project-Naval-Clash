@@ -1,3 +1,4 @@
+#include "clearscreen.h"
 #include "board.h"
 #include "keyboard.h"
 #include "screen.h"

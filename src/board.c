@@ -1,8 +1,8 @@
 #include "board.h"
-#include "screen.h"
+#include "screen.h"  // Para usar funções de screen.c
 #include <stdio.h>
-#include <stdlib.h>  
-#include <string.h>
+#include <stdlib.h>  // Para rand()
+#include <string.h>  // Para strcpy()
 
 void iniciaTabuleiro(char tabuleiro[10][10], char mascara[10][10]) {
     for (int linha = 0; linha < 10; linha++) {
@@ -19,14 +19,25 @@ void exibeTabuleiro(char tabuleiro[10][10], char mascara[10][10], int mostraGaba
         printf("%d - ", linha);
 
         for (int coluna = 0; coluna < 10; coluna++) {
-            if (mascara[linha][coluna] == 'A')
-                screenSetColor(BLUE, BLACK);   // Água em azul
-            else if (mascara[linha][coluna] == 'P')
-                screenSetColor(GREEN, BLACK);  // Barcos em verde
-            else
-                screenSetColor(WHITE, BLACK);  // Outros elementos
+            if (mostraGabarito) {
+                if (tabuleiro[linha][coluna] == 'A')
+                    screenSetColor(BLUE, BLACK);
+                else if (tabuleiro[linha][coluna] == 'P')
+                    screenSetColor(GREEN, BLACK);
+                else
+                    screenSetColor(WHITE, BLACK);
 
-            printf(" %c", mascara[linha][coluna]);
+                printf(" %c", tabuleiro[linha][coluna]);
+            } else {
+                if (mascara[linha][coluna] == 'A')
+                    screenSetColor(BLUE, BLACK);
+                else if (mascara[linha][coluna] == 'P')
+                    screenSetColor(GREEN, BLACK);
+                else
+                    screenSetColor(WHITE, BLACK); 
+
+                printf(" %c", mascara[linha][coluna]);
+            }
             screenSetColor(WHITE, BLACK);
         }
         printf("\n");
