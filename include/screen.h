@@ -158,6 +158,8 @@ static inline void screenBoxDisable()
 */
 void screenInit(int drawBorders);
 
+void screenDrawBorders();
+
 /**
  * Clear the screen and restores to initial state.
 */
