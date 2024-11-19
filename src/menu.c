@@ -62,7 +62,7 @@ void menuInicial() {
             screenGotoxy(3, 19);
             printf("Boa Caçada!");
             screenGotoxy(3, 21);
-            printf("Pressione 0 para voltar ao menu inicial: ");
+            printf("Pressione qualquer tecla para voltar ao menu inicial: ");
             initialSettings = getchar(); 
                 while (getchar() != '\n');
             menuInicial();
